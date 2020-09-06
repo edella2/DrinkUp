@@ -1,4 +1,4 @@
-class CocktailDB
+class CocktailDb
     include HTTParty
     base_uri "https://www.thecocktaildb.com/api/json/v2/#{ENV["COCKTAILDB_API_KEY"]}"
     # https://www.thecocktaildb.com/api/json/v1/1/popular.php
