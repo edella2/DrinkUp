@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   scope 'api' do
     scope '/v1' do
       get 'popular', to: "api/v1/cocktail#popular"
+      get 'filter', to: "api/v1/cocktail#filter"
     end
 
   end
