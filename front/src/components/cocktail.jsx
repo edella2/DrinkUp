@@ -1,31 +1,28 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
-class Recipes extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      recipes: []
-    };
-  }
+class Cocktail extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
-      const url = "/api/v1/recipes/index";
-      fetch(url)
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Network response was not ok.");
-        })
-        .then(response => this.setState({ recipes: response }))
-        .catch(() => this.props.history.push("/"));
+      // const url = "/api/v1/recipes/index";
+      // fetch(url)
+      //   .then(response => {
+      //     if (response.ok) {
+      //       return response.json();
+      //     }
+      //     throw new Error("Network response was not ok.");
+      //   })
+      //   .then(response => this.setState({ recipes: response }))
+      //   .catch(() => this.props.history.push("/"));
   }
 
   render() {
-      const { cocktail } = this.props.cocktail;
+      let { cocktail } = this.props;
       return (
-          <div>Cocktail id: {cocktail.id}</div>
+        <div>Cocktail: {cocktail.strDrink}</div>
       )
   }
 
@@ -88,4 +85,4 @@ class Recipes extends Component {
 //   }
 
 }
-export default Recipes;
+export default Cocktail;

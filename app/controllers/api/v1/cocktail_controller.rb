@@ -4,9 +4,9 @@ module Api
     class CocktailController < ApplicationController
       def popular
         resp = CocktailDb.new("cocktails", {})
-        resp = resp.popular
+        @cocktails = resp.popular
 
-        pp resp
+        render json: @cocktails
       end
     end
   end
