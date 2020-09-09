@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Cocktail from './cocktail';
 import axios from "axios";
+import { Container, Grid } from '@material-ui/core';
 // import axios from 'axios';
 // import Giphy from './Giphy'
 // import GiphySearch from './GiphySearch'
@@ -14,10 +15,6 @@ class PopularCocktailContainer extends Component {
           cocktails: [],
 
         }
-        // this.searchNewGifs = this.searchNewGifs.bind(this);
-        // this.twilioSubmit = this.twilioSubmit.bind(this);
-        // this.randomNewGif = this.randomNewGif.bind(this);
-        // this.nextRandomGif = this.nextRandomGif.bind(this);
     }
 
     componentDidMount() {
@@ -39,14 +36,23 @@ class PopularCocktailContainer extends Component {
     }
 
     render() {
+      
         let { cocktails } = this.state;
-        return cocktails.map( cocktail => {
-          return (
-            <div key={cocktail.id} className="cocktail-boxes" >
-                <Cocktail cocktail={cocktail} />
-            </div>
-        )
-      })
+
+        return (
+          <Container >
+            <Grid container spacing={3}>
+              {cocktails.map( cocktail => {
+                return (
+                  <Grid item xs={12} sm={6} md={3}>
+                    <Cocktail cocktail={cocktail} />
+                  </Grid>
+                )
+              })}
+          </Grid>
+        </Container>
+        
+      )
     }
 }
 export default PopularCocktailContainer;
