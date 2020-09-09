@@ -12,17 +12,17 @@ function CocktailCard(props) {
   const classes = useStyles(props);
   return (
     <Card className={classes.root}>
-        <CardMedia
-          image={props.classes.cocktail.strDrinkThumb}
-          title={props.classes.cocktail.strDrink}
-          height="140"
-          component="img"
-          alt={props.classes.cocktail.strDrink}
-        />
-        <CardContent>
-          <Typography>{props.classes.cocktail.strDrink}</Typography>
-        </CardContent>
-      </Card>
+      <CardMedia
+        image={props.classes.cocktail.strDrinkThumb}
+        title={props.classes.cocktail.strDrink}
+        height="140"
+        component="img"
+        alt={props.classes.cocktail.strDrink}
+      />
+      <CardContent>
+        <Typography>{props.classes.cocktail.strDrink}</Typography>
+      </CardContent>
+    </Card>
   );
 }
 
