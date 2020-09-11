@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './App.css';
 import PopularCocktailContainer from './components/popularCocktailContainer';
 import CocktailPage from './components/cocktailPage';
@@ -6,8 +6,7 @@ import SearchAppBar from './components/searchAppBar';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 function App() {
