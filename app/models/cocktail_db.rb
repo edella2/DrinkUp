@@ -6,13 +6,16 @@ class CocktailDb
       # @options = options
       @options = { query: params }
     end
+
+    def lookup
+      self.class.get("/lookup.php", @options)
+    end
   
     def popular
       self.class.get("/popular.php", @options)
     end
 
     def filter
-      pp @options
       self.class.get("/filter.php", @options)
     end
   

@@ -18,7 +18,7 @@ class PopularCocktailContainer extends Component {
     }
 
     componentDidMount() {
-      const url = "http://localhost:3000/api/v1/popular";
+      const url = "/api/v1/popular";
       let cocktails;
       axios.get(url)
       .then(response => {

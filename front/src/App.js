@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './App.css';
 import PopularCocktailContainer from './components/popularCocktailContainer';
 import CocktailPage from './components/cocktailPage';
+import SearchAppBar from './components/searchAppBar';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,16 +11,13 @@ import {
 } from "react-router-dom";
 
 function App() {
-  return (
-    
-    <Router basename="/">
+  console.log("app.js")
+  return (    
+    <Router>
+      <SearchAppBar></SearchAppBar>
       <Switch>
-        <Route path="/cocktail/:id" exact>
-          <CocktailPage />
-        </Route>
-        <Route path="*">
-          <PopularCocktailContainer />
-        </Route>
+        <Route path="/cocktail/:id" component={CocktailPage} exact/>
+        <Route path="/" component={PopularCocktailContainer} exact/>
       </Switch>
     </Router>
   )

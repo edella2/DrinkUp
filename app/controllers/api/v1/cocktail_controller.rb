@@ -9,6 +9,13 @@ module Api
         render json: @cocktails
       end
 
+      def lookup
+        resp = CocktailDb.new({i: params[:id]})
+        @cocktails = resp.lookup
+
+        render json: @cocktails
+      end
+
       def filter
         resp = CocktailDb.new(filter_params)
         @cocktails = resp.filter
