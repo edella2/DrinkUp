@@ -15,6 +15,10 @@ class CocktailDb
       self.class.get("/popular.php", @options)
     end
 
+    def search
+      self.class.get("/search.php", @options)
+    end
+
     def filter
       self.class.get("/filter.php", @options)
     end

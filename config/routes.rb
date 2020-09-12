@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get 'popular', to: "api/v1/cocktail#popular"
       get 'filter', to: "api/v1/cocktail#filter"
       get 'cocktail', to: "api/v1/cocktail#lookup"
+      get 'search', to: "api/v1/cocktail#search"
     end
 
   end

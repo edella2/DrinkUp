@@ -27,7 +27,18 @@ module Api
         render json: @cocktails
       end
 
+      def search
+        resp = CocktailDb.new(search_params)
+        @cocktails = resp.search
+
+        render json: @cocktails
+      end
+
       private 
+
+      def search_params
+        params.permit(:s, :i).to_h || {}
+      end
 
       def filter_params
         params.permit(:i, :a, :c, :g).to_h || {}

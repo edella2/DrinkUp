@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,7 +15,10 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  title: {
+  link: {
+    justifyContent: 'between',
+    textDecoration: 'none',
+    color: 'white',
     flexGrow: 1,
     display: 'none',
     [theme.breakpoints.up('sm')]: {
@@ -69,17 +73,17 @@ export default function SearchAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
-          </Typography>
-          <div className={classes.search}>
+          <Link color="primary" className={classes.link} to="/">
+            <Typography variant="h6" noWrap>
+              Popular
+            </Typography>
+          </Link>
+          <Link className={classes.link} to="/search">
+            <Typography variant="h6" noWrap>
+              Search
+            </Typography>
+          </Link>
+          {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
             </div>
             <InputBase
@@ -90,7 +94,7 @@ export default function SearchAppBar() {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
+          </div> */}
         </Toolbar>
       </AppBar>
     </div>
