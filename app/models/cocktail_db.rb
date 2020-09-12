@@ -22,6 +22,11 @@ class CocktailDb
     def filter
       self.class.get("/filter.php", @options)
     end
+
+    def list_ingredients
+      self.class.get("/list.php", @options)
+
+    end
   
     # def users
     #   self.class.get("/2.2/users", @options)

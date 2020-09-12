@@ -34,14 +34,35 @@ module Api
         render json: @cocktails
       end
 
+      def list_ingredients
+        resp = CocktailDb.new(list_ingredients_params)
+        @ingredients = resp.list_ingredients
+
+        # Format possible ingredients data from cocktailDB API
+        format_ingredients_list
+
+        render json: @ingredients
+      end
+
       private 
+
+      def list_ingredients_params
+        params.permit(:i).to_h || {}
+      end
 
       def search_params
         params.permit(:s, :i).to_h || {}
       end
 
       def filter_params
-        params.permit(:i, :a, :c, :g).to_h || {}
+        params.permit(:i).to_h || {}
+      end
+
+      def format_ingredients_list
+        @ingredients = @ingredients['drinks']
+        @ingredients.map! do |ingredient|
+          ingredient['strIngredient1']
+        end
       end
 
       def format_cocktail

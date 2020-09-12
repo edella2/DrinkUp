@@ -3,6 +3,7 @@ import './App.css';
 import PopularCocktailContainer from './components/popularCocktailContainer';
 import CocktailPage from './components/cocktailPage';
 import SearchPage from './components/searchPage';
+import IngredientSearchPage from './components/ingredientSearchPage';
 import SearchAppBar from './components/searchAppBar';
 import {
   BrowserRouter as Router,
@@ -18,6 +19,7 @@ function App() {
       <Switch>
         <Route path="/cocktail/:id" component={CocktailPage} exact/>
         <Route path="/search" component={SearchPage} exact/>
+        <Route path="/ingredients" component={IngredientSearchPage} exact/>
         <Route path="/" component={PopularCocktailContainer} exact/>
       </Switch>
     </Router>

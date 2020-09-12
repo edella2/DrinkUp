@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'filter', to: "api/v1/cocktail#filter"
       get 'cocktail', to: "api/v1/cocktail#lookup"
       get 'search', to: "api/v1/cocktail#search"
+      get 'ingredients', to: "api/v1/cocktail#list_ingredients"
     end
 
   end

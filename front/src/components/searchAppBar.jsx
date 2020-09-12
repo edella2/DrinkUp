@@ -80,7 +80,12 @@ export default function SearchAppBar() {
           </Link>
           <Link className={classes.link} to="/search">
             <Typography variant="h6" noWrap>
-              Search
+              Search by Name
+            </Typography>
+          </Link>
+          <Link className={classes.link} to="/ingredients">
+            <Typography variant="h6" noWrap>
+              Search by Ingredients
             </Typography>
           </Link>
           {/* <div className={classes.search}>
