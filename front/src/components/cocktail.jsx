@@ -30,10 +30,6 @@ function CocktailCard(props) {
 }
 
 class Cocktail extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let { cocktail } = this.props;
     return (

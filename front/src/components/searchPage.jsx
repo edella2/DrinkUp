@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import Cocktail from './cocktail';
 import { FormControl, InputLabel, Input, Container, Grid } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({}));
+// const useStyles = makeStyles((theme) => ({}));
 
 export default function SearchPage() {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   const [cocktails, setCocktails] = useState([])
   const [term, setTerm] = useState("")
@@ -29,7 +29,7 @@ export default function SearchPage() {
   }
 
   useEffect(() => { 
-    if (term != "") {
+    if (term !== "") {
       searchCocktails(term)
     }
   }, [term])

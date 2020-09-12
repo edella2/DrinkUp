@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import qs from 'qs';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Cocktail from './cocktail';
 import { FormControl, Select, Container, Grid, MenuItem, Chip, Input, InputLabel } from '@material-ui/core';
@@ -56,9 +55,12 @@ export default function IngredientSearchPage() {
   function filterCocktails() {
     let param_ing = ingredients.join()
     axios.get(url, {
-      params: { i: [param_ing] },
+      params: { i: param_ing },
     }).then(res => {
-      if (res.data.drinks != "None Found") {
+      if (res.data.drinks === "None Found" ) {
+        setCocktails([])
+      }
+      else if (res.data.drinks !== "None Found") {
         setCocktails(res.data.drinks)
       }
     })
@@ -77,20 +79,18 @@ export default function IngredientSearchPage() {
     setIngredients(event.target.value);
   }
 
+  useEffect(() => {
+    getIngredientsList()
+  }, [])
+
   useEffect(() => { 
-    console.log("hi")
-    if (!ingredients_list.length) {
-      getIngredientsList()
-    }
-    if (ingredients) {
-      filterCocktails()
-    }
+    filterCocktails()
   }, [ingredients])
 
   return (
     <Container>
       <FormControl>
-        <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
+        <InputLabel id="demo-mutiple-chip-label">Ingredient's</InputLabel>
         <Select
           labelId="demo-mutiple-chip-label"
           id="demo-mutiple-chip"
@@ -98,7 +98,7 @@ export default function IngredientSearchPage() {
           value={ingredients}
           onChange={handleIngredientsChange}
           input={<Input id="select-multiple-chip" />}
-          renderValue={(selected) => (
+          renderValue={() => (
             <div className={classes.chips}>
               {ingredients.map((value) => (
                 <Chip key={value} label={value} className={classes.chip} />
