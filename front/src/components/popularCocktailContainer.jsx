@@ -1,59 +1,39 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Cocktail from './cocktail';
 import axios from "axios";
 import { Container, Grid } from '@material-ui/core';
-// import axios from 'axios';
-// import Giphy from './Giphy'
-// import GiphySearch from './GiphySearch'
-// import TwilioForm from './TwilioForm'
 
 
-class PopularCocktailContainer extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-          cocktails: [],
 
-        }
-    }
+function PopularCocktailContainer(props) {
+  const [cocktails, setCocktails] = useState([])
+  const url = "/api/v1/popular";
 
-    componentDidMount() {
-      const url = "/api/v1/popular";
-      let cocktails;
+  useEffect(() => {
+    function fetchCocktails() {
       axios.get(url)
       .then(response => {
-        // handle success
-        cocktails = response.data.drinks;
-        this.setState({cocktails})
+        setCocktails(response.data.drinks)
       })
-      .catch(error => {
-        // handle error
-        console.log(error);
-      })
-      .then(() => {
-        // always executed
-      });
     }
+    fetchCocktails();
+  }, [])
 
-    render() {
-      
-        let { cocktails } = this.state;
 
-        return (
-          <Container >
-            <Grid container spacing={3}>
-              {cocktails.map( cocktail => {
-                return (
-                  <Grid item xs={12} sm={6} md={3}>
-                    <Cocktail cocktail={cocktail} />
-                  </Grid>
-                )
-              })}
-          </Grid>
-        </Container>
-        
-      )
-    }
+  return (
+    <Container >
+      <Grid container spacing={3}>
+        {cocktails.map( cocktail => {
+          return (
+            <Grid item xs={12} sm={6} md={3}>
+              <Cocktail cocktail={cocktail} />
+            </Grid>
+          )
+        })}
+    </Grid>
+  </Container>
+  
+)
 }
 export default PopularCocktailContainer;
 
