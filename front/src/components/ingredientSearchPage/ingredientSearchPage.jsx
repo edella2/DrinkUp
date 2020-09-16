@@ -23,38 +23,36 @@ export default function IngredientSearchPage() {
   const url = "/api/v1/filter";
   const list_url = "/api/v1/ingredients";
 
-  function filterCocktails() {
-    let param_ing = ingredients.join()
-    axios.get(url, {
-      params: { i: param_ing },
-    }).then(res => {
-      if (res.data.drinks === "None Found" ) {
-        setCocktails([])
-      }
-      else if (res.data.drinks !== "None Found") {
-        setCocktails(res.data.drinks)
-      }
-    })
-  }
-
-  function getIngredientsList() {
-    console.log("list")
-    axios.get(list_url, {
-      params: { i: 'list' }
-    }).then(res => {
-      setIngredientsList(res.data)
-    })
-  }
-
   function handleIngredientsChange(event) {
     setIngredients(event.target.value);
   }
 
   useEffect(() => {
+    function getIngredientsList() {
+      console.log("list")
+      axios.get(list_url, {
+        params: { i: 'list' }
+      }).then(res => {
+        setIngredientsList(res.data)
+      })
+    }
     getIngredientsList()
   }, [])
 
   useEffect(() => { 
+    function filterCocktails() {
+      let param_ing = ingredients.join()
+      axios.get(url, {
+        params: { i: param_ing },
+      }).then(res => {
+        if (res.data.drinks === "None Found" ) {
+          setCocktails([])
+        }
+        else if (res.data.drinks !== "None Found") {
+          setCocktails(res.data.drinks)
+        }
+      })
+    }
     filterCocktails()
   }, [ingredients])
 
