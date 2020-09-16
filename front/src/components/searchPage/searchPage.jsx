@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SearchBar from "material-ui-search-bar";
 import { makeStyles } from '@material-ui/core/styles';
-
 import { FormControl, Container } from '@material-ui/core';
 import CocktailGrid from "../cocktailGrid/cocktailGrid";
 

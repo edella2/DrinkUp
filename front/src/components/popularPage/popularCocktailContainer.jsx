@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { Container, Grid } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import CocktailGrid from '../cocktailGrid/cocktailGrid';
 
 

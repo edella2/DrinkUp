@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { makeStyles } from '@material-ui/core/styles';
-import { FormControl, Select, Container, MenuItem, Chip, Input, InputLabel, Typography } from '@material-ui/core';
+import { FormControl, Select, Container, MenuItem, Chip, Input, Typography } from '@material-ui/core';
 import CocktailGrid from "../cocktailGrid/cocktailGrid";
 
 const useStyles = makeStyles((theme) => ({
