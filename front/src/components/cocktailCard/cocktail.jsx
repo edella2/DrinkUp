@@ -10,7 +10,8 @@ const useStyles = makeStyles(theme => ({
 
 function Cocktail(props) {
   const classes = useStyles(props);
-  let link = "/cocktail/" + props.cocktail.idDrink
+  const link = "/cocktail/" + props.cocktail.idDrink;
+  
   return (
     <Card className={classes.root}>
       <Link to={link}>

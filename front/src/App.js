@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import PopularCocktailContainer from './components/popularCocktailContainer';
-import CocktailPage from './components/cocktailPage';
-import SearchPage from './components/searchPage';
-import IngredientSearchPage from './components/ingredientSearchPage';
-import SearchAppBar from './components/searchAppBar';
+import PopularCocktailContainer from './components/popularPage/popularCocktailContainer';
+import CocktailPage from './components/cocktailPage/cocktailPage';
+import SearchPage from './components/searchPage/searchPage';
+import IngredientSearchPage from './components/ingredientSearchPage/ingredientSearchPage';
+import TabBar from './components/tabBar/tabBar';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,7 +15,7 @@ function App() {
   console.log("app.js")
   return (    
     <Router>
-      <SearchAppBar></SearchAppBar>
+      <TabBar></TabBar>
       <Switch>
         <Route path="/cocktail/:id" component={CocktailPage} exact/>
         <Route path="/search" component={SearchPage} exact/>

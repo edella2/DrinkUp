@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 // import { makeStyles } from '@material-ui/core/styles';
-import Cocktail from './cocktail';
+import Cocktail from '../cocktailCard/cocktail';
 import { FormControl, InputLabel, Input, Container, Grid } from '@material-ui/core';
+import CocktailGrid from "../cocktailGrid/cocktailGrid";
 
 // const useStyles = makeStyles((theme) => ({}));
 
@@ -11,15 +12,9 @@ export default function SearchPage() {
 
   const [cocktails, setCocktails] = useState([])
   const [term, setTerm] = useState("")
-  const url = "/api/v1/search";
 
-  function searchCocktails(term) {
-    axios.get(url, {
-      params: { s: term }
-    }).then(res => {
-      setCocktails(res.data.drinks)
-    })
-  }
+  const search_url = "/api/v1/search";
+  const popular_url = "/api/v1/popular";
 
   function handleSearchTermChange(event) {
     const target = event.target.value;
@@ -29,8 +24,25 @@ export default function SearchPage() {
   }
 
   useEffect(() => { 
+    function searchCocktails(term) {
+      axios.get(search_url, {
+        params: { s: term }
+      }).then(res => {
+        setCocktails(res.data.drinks)
+      })
+    }
+
+    function popularCocktails() {
+      axios.get(popular_url).then(res => {
+        setCocktails(res.data.drinks)
+      })
+    }
+
     if (term !== "") {
+      console.log(term)
       searchCocktails(term)
+    } if (term === "") {
+      popularCocktails()
     }
   }, [term])
 
@@ -40,15 +52,7 @@ export default function SearchPage() {
         <InputLabel htmlFor="my-input">Search</InputLabel>
         <Input onChange={handleSearchTermChange} id="my-input" aria-describedby="my-helper-text" />
       </FormControl>
-        <Grid container spacing={3}>
-          {cocktails.map( cocktail => {
-            return (
-              <Grid item xs={12} sm={6} md={3}>
-                <Cocktail cocktail={cocktail} />
-              </Grid>
-            )
-          })}
-      </Grid>
+      <CocktailGrid cocktails={cocktails}/>
     </Container>
   );
 }

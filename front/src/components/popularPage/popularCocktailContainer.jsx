@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Cocktail from './cocktail';
+import Cocktail from '../cocktailCard/cocktail';
 import axios from "axios";
 import { Container, Grid } from '@material-ui/core';
+import CocktailGrid from '../cocktailGrid/cocktailGrid';
 
 
 
@@ -22,18 +23,9 @@ function PopularCocktailContainer(props) {
 
   return (
     <Container >
-      <Grid container spacing={3}>
-        {cocktails.map( cocktail => {
-          return (
-            <Grid item xs={12} sm={6} md={3}>
-              <Cocktail cocktail={cocktail} />
-            </Grid>
-          )
-        })}
-    </Grid>
-  </Container>
-  
-)
+      <CocktailGrid cocktails={cocktails}/>
+    </Container>
+  )
 }
 export default PopularCocktailContainer;
 

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Cocktail from './cocktail';
+import Cocktail from '../cocktailCard/cocktail';
 import { FormControl, Select, Container, Grid, MenuItem, Chip, Input, InputLabel } from '@material-ui/core';
+import CocktailGrid from "../cocktailGrid/cocktailGrid";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -49,6 +50,7 @@ export default function IngredientSearchPage() {
   const [cocktails, setCocktails] = useState([])
   const [ingredients, setIngredients] = useState([])
   const [ingredients_list, setIngredientsList] = useState([])
+
   const url = "/api/v1/filter";
   const list_url = "/api/v1/ingredients";
 
@@ -114,16 +116,7 @@ export default function IngredientSearchPage() {
           ))}
         </Select>
       </FormControl>
-        <Grid container spacing={3}>
-          {cocktails.map( cocktail => {
-            return (
-              <Grid item xs={12} sm={6} md={3}>
-                <Cocktail cocktail={cocktail} />
-              </Grid>
-            )
-          })
-        }
-      </Grid>
+      <CocktailGrid cocktails={cocktails}/>
     </Container>
   );
 }
