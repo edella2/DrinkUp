@@ -1,51 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Cocktail from '../cocktailCard/cocktail';
-import { FormControl, Select, Container, Grid, MenuItem, Chip, Input, InputLabel } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { FormControl, Select, Container, MenuItem, Chip, Input, InputLabel, Typography } from '@material-ui/core';
 import CocktailGrid from "../cocktailGrid/cocktailGrid";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
+    marginBottom: theme.spacing(2),
     minWidth: 120,
     maxWidth: 300,
   },
-  chips: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  chip: {
-    margin: 2,
-  },
-  noLabel: {
-    marginTop: theme.spacing(3),
-  },
 }));
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-function getStyles(name, ingredients, theme) {
-  return {
-    fontWeight:
-      ingredients.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
 
 export default function IngredientSearchPage() {
   const classes = useStyles();
-  const theme = useTheme();
 
   const [cocktails, setCocktails] = useState([])
   const [ingredients, setIngredients] = useState([])
@@ -91,11 +60,10 @@ export default function IngredientSearchPage() {
 
   return (
     <Container>
-      <FormControl>
-        <InputLabel id="demo-mutiple-chip-label">Ingredient's</InputLabel>
+      <FormControl className={classes.formControl}>
+        <Typography>Ingredients</Typography>
         <Select
-          labelId="demo-mutiple-chip-label"
-          id="demo-mutiple-chip"
+          id="mutiple-chip"
           multiple
           value={ingredients}
           onChange={handleIngredientsChange}
@@ -107,16 +75,15 @@ export default function IngredientSearchPage() {
               ))}
             </div>
           )}
-          MenuProps={MenuProps}
         >
           {ingredients_list.map((name) => (
-            <MenuItem key={name} value={name} style={getStyles(name, ingredients, theme)}>
+            <MenuItem key={name} value={name}>
               {name}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-      <CocktailGrid cocktails={cocktails}/>
+      <CocktailGrid key={cocktails} cocktails={cocktails}/>
     </Container>
   );
 }

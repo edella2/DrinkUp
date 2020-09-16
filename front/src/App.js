@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import PopularCocktailContainer from './components/popularPage/popularCocktailContainer';
+import PopularPage from './components/popularPage/popularCocktailContainer';
 import CocktailPage from './components/cocktailPage/cocktailPage';
 import SearchPage from './components/searchPage/searchPage';
 import IngredientSearchPage from './components/ingredientSearchPage/ingredientSearchPage';
@@ -20,7 +20,7 @@ function App() {
         <Route path="/cocktail/:id" component={CocktailPage} exact/>
         <Route path="/search" component={SearchPage} exact/>
         <Route path="/ingredients" component={IngredientSearchPage} exact/>
-        <Route path="/" component={PopularCocktailContainer} exact/>
+        <Route path="/" component={PopularPage} exact/>
       </Switch>
     </Router>
   )

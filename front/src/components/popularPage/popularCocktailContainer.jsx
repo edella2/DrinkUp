@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Cocktail from '../cocktailCard/cocktail';
 import axios from "axios";
 import { Container, Grid } from '@material-ui/core';
 import CocktailGrid from '../cocktailGrid/cocktailGrid';
 
 
 
-function PopularCocktailContainer(props) {
+function PopularPage(props) {
   const [cocktails, setCocktails] = useState([])
   const url = "/api/v1/popular";
 
@@ -23,9 +22,9 @@ function PopularCocktailContainer(props) {
 
   return (
     <Container >
-      <CocktailGrid cocktails={cocktails}/>
+      <CocktailGrid key={cocktails} cocktails={cocktails}/>
     </Container>
   )
 }
-export default PopularCocktailContainer;
+export default PopularPage;
 

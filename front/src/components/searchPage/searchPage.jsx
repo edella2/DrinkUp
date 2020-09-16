@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import { makeStyles } from '@material-ui/core/styles';
-import Cocktail from '../cocktailCard/cocktail';
-import { FormControl, InputLabel, Input, Container, Grid } from '@material-ui/core';
+import SearchBar from "material-ui-search-bar";
+import { makeStyles } from '@material-ui/core/styles';
+
+import { FormControl, Container } from '@material-ui/core';
 import CocktailGrid from "../cocktailGrid/cocktailGrid";
 
-// const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  search: {
+    marginBottom: theme.spacing(3)
+  }
+}));
 
 export default function SearchPage() {
-  // const classes = useStyles();
+  const classes = useStyles();
 
   const [cocktails, setCocktails] = useState([])
   const [term, setTerm] = useState("")
@@ -16,10 +21,9 @@ export default function SearchPage() {
   const search_url = "/api/v1/search";
   const popular_url = "/api/v1/popular";
 
-  function handleSearchTermChange(event) {
-    const target = event.target.value;
-    if (target) {
-      setTerm(target)
+  function handleSearchTermChange(value) {
+    if (value) {
+      setTerm(value)
     }
   }
 
@@ -28,7 +32,12 @@ export default function SearchPage() {
       axios.get(search_url, {
         params: { s: term }
       }).then(res => {
-        setCocktails(res.data.drinks)
+        if (res.data.drinks === null) {
+          setCocktails([])
+        }
+        else if (res.data.drinks !== null) {
+          setCocktails(res.data.drinks)
+        }
       })
     }
 
@@ -39,9 +48,8 @@ export default function SearchPage() {
     }
 
     if (term !== "") {
-      console.log(term)
       searchCocktails(term)
-    } if (term === "") {
+    } else if (term === "") {
       popularCocktails()
     }
   }, [term])
@@ -49,10 +57,9 @@ export default function SearchPage() {
   return (
     <Container>
       <FormControl>
-        <InputLabel htmlFor="my-input">Search</InputLabel>
-        <Input onChange={handleSearchTermChange} id="my-input" aria-describedby="my-helper-text" />
+        <SearchBar className={classes.search} onChange={handleSearchTermChange} htmlFor="my-input">Search</SearchBar>
       </FormControl>
-      <CocktailGrid cocktails={cocktails}/>
+      <CocktailGrid key={cocktails} cocktails={cocktails}/>
     </Container>
   );
 }
